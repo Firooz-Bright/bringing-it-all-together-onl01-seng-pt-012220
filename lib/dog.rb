@@ -78,9 +78,12 @@ class Dog
       dog = DB[:conn].execute(sql, name, breed)[0]
 
       if dog
+        #new_dog=self_from_db(dog)
         new_dog = DB[:conn].execute(sql, name, breed).map{|dog|self.new_from_db(dog)}.first
       else
+        
         new_dog = self.create({:name => name, :breed => breed})
+      
       end
       new_dog
   end
